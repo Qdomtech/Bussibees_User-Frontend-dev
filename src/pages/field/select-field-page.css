@@ -1,0 +1,65 @@
+.select-field-base {
+    background-color: #fff;
+    min-height: 98%;
+    width: 100%;
+    max-width: fit-content;
+    /* min-width: 496px; */
+    border-radius: 38px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width:500px) {
+        max-width: 100%;
+    }
+
+    .svg-wrapper {
+        width: fit-content;
+        margin: auto;
+
+        /* resp height */
+        @media screen and (max-height:800px) {
+            svg {
+                width: 60%;
+                height: auto;
+                margin: auto;
+            }
+        }
+    }
+
+    /* resp width */
+    @media screen and (max-width:768px) {
+        margin: 0;
+        border-radius: 24px;
+    }
+}
+
+.select-field-title {
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+
+    span {
+        color: #9533FB;
+    }
+
+    /* resp height */
+    @media screen and (max-height:800px) {
+        font-size: 23px;
+    }
+}
+
+.select-field-type-base {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.type-select-item-disabled {
+    filter: grayscale(1);
+    cursor: not-allowed;
+}

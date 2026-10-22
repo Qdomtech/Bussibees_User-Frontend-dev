@@ -1,0 +1,28 @@
+.layout-content-area {
+    height: 100vh;
+    overflow-y: scroll;
+
+    @media screen and (max-width:1024px) {
+        width: 100%;
+    }
+}
+
+.layout-content-area.open {
+    overflow-y: hidden;
+}
+
+.mobile__header {
+    position: sticky;
+    top: 0%;
+    left: 0%;
+    background-color: #F7F1FF;
+    z-index: 20;
+
+    @media screen and (min-width:1025px) {
+        display: none;
+    }
+
+    .mobile-logo {
+        width: 138px;
+    }
+}
