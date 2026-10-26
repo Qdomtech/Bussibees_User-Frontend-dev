@@ -13,6 +13,7 @@ export default function SignUp() {
     const {
         formik,
         sendOTP,
+        isSendingOTP,
         isValidEmail,
         isPasswordShow,
         isConfirmPasswordShow,
@@ -120,10 +121,10 @@ export default function SignUp() {
                             isValidEmail ?
                                 <button onClick={formik.submitForm} className="common-btn-ui">Submit</button>
                                 :
-                                <button disabled={formik.values.email === "" ? true : false}
-                                    className={`common-btn-ui ${formik.values.email === "" ? "disabled" : ""}`}
+                                <button disabled={formik.values.email === "" || isSendingOTP}
+                                    className={`common-btn-ui ${formik.values.email === "" || isSendingOTP ? "disabled" : ""}`}
                                     onClick={() => sendOTP("email")}
-                                >Submit</button>
+                                >{isSendingOTP ? "Sending..." : "Submit"}</button>
                         }
                         <div className="signup-btm-text">Already have an account? <Link to={"/login"}>Login</Link></div>
                     </div>

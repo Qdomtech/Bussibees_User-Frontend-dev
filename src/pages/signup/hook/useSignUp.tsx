@@ -13,6 +13,7 @@ export default function UseSignUp() {
     const slug = useParams();
     const [isValidMob, setisValidMob] = useState(false);
     const [isValidEmail, setisValidEmail] = useState(false);
+    const [isSendingOTP, setIsSendingOTP] = useState(false);
 
     // toggle password 
     const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
@@ -85,7 +86,8 @@ export default function UseSignUp() {
 
     // handle Verify
     async function sendOTP(type: "mobile" | "email") {
-        // if
+        if (isSendingOTP) return;
+        setIsSendingOTP(true);
         try {
             if (slug?.slug) {
                 if (type === "email" && formik.values.email) {
@@ -120,12 +122,15 @@ export default function UseSignUp() {
         } catch (error) {
             const err = error as ErrResp;
             toast.error(err?.response?.data?.message)
+        } finally {
+            setIsSendingOTP(false);
         }
     }
 
     return {
         formik,
         sendOTP,
+        isSendingOTP,
         isValidMob,
         isValidEmail,
         togglePassword,
