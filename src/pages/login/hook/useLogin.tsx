@@ -1,6 +1,5 @@
 import type { ErrResp } from "@/config/axios-instance";
-import { useAccount } from "@/context/account/AccountContext";
-import { handleLogin, type handleLoginData } from "@/services/user-auth.service";
+import { handleLogin, handleGetUserAccountMode, type handleLoginData } from "@/services/user-auth.service";
 import { loginSchema } from "@/validation/login.schema";
 import { useFormik } from "formik";
 import Cookies from "js-cookie";
@@ -12,7 +11,6 @@ export default function UseLogin() {
     const [isShowPass, setIsShowPass] = useState(false)
     const [searchParams] = useSearchParams();
     const [signUpLink, setSignUpLink] = useState("");
-    const { accountMode } = useAccount();
 
     const formik = useFormik({
         initialValues: {
@@ -73,7 +71,9 @@ export default function UseLogin() {
                 const resp = await handleLogin(val);
                 const accessToken = resp.data?.token as string;
                 Cookies.set("buuid", accessToken);
-                window.location.href = accountMode === "exam" ? "/home" : "/overview";
+                const modeResp = await handleGetUserAccountMode();
+                const mode = modeResp?.data?.data?.AccountMode;
+                window.location.href = mode === "exam" ? "/home" : "/overview";
             }
         } catch (error) {
             const err = error as ErrResp;
