@@ -86,21 +86,19 @@ export default function CompleteProfile() {
                                     aria-label="Select State"
                                     placeholder="Select State"
                                     name="state"
-                                    // isDisabled={!formik.values.country}
                                     selectedKey={formik.values.state}
-                                    // onSelectionChange={(key) => {
-                                    //     formik.setFieldValue('state', key ?? '');
-                                    //     formik.setFieldValue('city', '');
-                                    // }}
+                                    onSelectionChange={(key) => {
+                                        formik.setFieldValue('state', key ?? '');
+                                        formik.setFieldValue('city', '');
+                                    }}
                                     isInvalid={!!formik.errors.state && formik.touched.state}
                                     errorMessage={formik.errors.state}
                                     classNames={{
                                         base: "complete-profile-autocomplete-input-base country-field"
                                     }}
                                     startContent={<StateIcon />}
-                                    isDisabled={true}
                                 >
-                                    {states.filter((state) => state.id === "RJ").map((state) => (
+                                    {states.map((state) => (
                                         <AutocompleteItem key={state.id}>{state.label}</AutocompleteItem>
                                     ))}
                                 </Autocomplete>

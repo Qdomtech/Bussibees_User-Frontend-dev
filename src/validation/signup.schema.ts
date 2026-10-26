@@ -14,10 +14,9 @@ export const completeProSchema = object({
     country: string(),
     state: string(),
     city: string(),
-    firstName: string(),
+    firstName: string().required("First name is required"),
     middleName: string(),
     lastName: string(),
     pincode: string(),
-    // pincode: string().required("pincode is required").matches(/^\d{6}$/, "must be 6 pincode digits"),
     email: string()
 })
