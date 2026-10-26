@@ -29,7 +29,7 @@ export const UseCountryStateCity = (getProfileDetails?: () => void) => {
     const formik = useFormik<CompleteProFormikI>({
         initialValues: {
             country: 'IN',
-            state: 'RJ',
+            state: '',
             city: '',
             firstName: "",
             middleName: "",
