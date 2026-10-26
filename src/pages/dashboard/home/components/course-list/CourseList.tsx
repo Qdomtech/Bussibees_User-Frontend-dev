@@ -13,7 +13,10 @@ export default function CourseList() {
             <div className="course-list-base">
                 {/* head */}
                 <div className="course-list-head home">
-                    <div className="course-list-title">Courses For You</div>
+                    <div>
+                        <div className="course-list-title">Courses For You</div>
+                        <div className="course-list-subtitle">Find the right course for your preparation</div>
+                    </div>
                     <div className="course-list-filter-base flex items-center gap-x-4">
                         <Select
                             aria-label="select-exam"

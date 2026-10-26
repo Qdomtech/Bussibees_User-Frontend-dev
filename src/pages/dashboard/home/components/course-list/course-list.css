@@ -1,88 +1,114 @@
+/* ── Section Title ─────────────────────────────────── */
 .course-list-title {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 20px;
+    color: #1a1a2e;
     white-space: nowrap;
-    margin-right: 1rem;
+    position: relative;
+    padding-left: 12px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10%;
+        bottom: 10%;
+        width: 4px;
+        border-radius: 4px;
+        background: linear-gradient(180deg, #6934CF, #9634FC);
+    }
 
     @media screen and (max-width: 600px) {
-        font-size: 18px;
+        font-size: 17px;
     }
 }
 
+.course-list-subtitle {
+    font-size: 12px;
+    color: #9a9aab;
+    font-weight: 400;
+    padding-left: 12px;
+    margin-top: 2px;
+
+    @media screen and (max-width: 600px) {
+        font-size: 11.5px;
+    }
+}
+
+/* ── Section Head Row ──────────────────────────────── */
 .course-list-head {
-    margin-top: .5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1rem;
+    gap: 8px;
 }
 
 .course-list-head.home {
-    @media screen and (max-width:360px) {
+    @media screen and (max-width: 440px) {
         flex-wrap: wrap;
-        gap: .4rem;
+        gap: 10px;
     }
 }
 
+/* ── Course Grid ───────────────────────────────────── */
 .course-list-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+
+    @media screen and (min-width: 640px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (min-width: 1100px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ── Filters ───────────────────────────────────────── */
+.course-list-filter-base {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 8px;
+    flex-shrink: 0;
+
+    .filter-select-base {
+        width: fit-content;
+    }
 }
 
 .filter-select-base {
-    min-width: 200px;
-
+    min-width: 150px;
 }
 
 .filter-select-base.home-filter-base {
-
     @media screen and (max-width: 600px) {
         min-width: unset;
 
         .filter-select-trigger {
-            width: 90px;
+            width: 88px;
         }
     }
 }
 
 .filter-select-trigger {
-    height: 40px;
-}
-
-.course-list-filter-base {
-    /* flex-wrap: wrap; */
-    gap: .5rem;
-
-    .filter-select-base {
-        width: fit-content;
-
-        /* &:nth-child(1) {
-            min-width: 170px;
-        }
-
-        &:nth-child(2) {
-            min-width: 170px;
-        } */
-    }
-
-
+    height: 38px;
+    border-radius: 10px !important;
 }
 
 .filter-select-listbox-wrapper {
-    li {
-        span {
-            @media screen and (max-width: 600px) {
-                font-size: 12px;
-            }
+    li span {
+        @media screen and (max-width: 600px) {
+            font-size: 12px;
         }
     }
 }
 
 .filter-select-value {
+    font-size: 13px;
+    font-weight: 600;
+
     @media screen and (max-width: 600px) {
         font-size: 12px;
-        font-weight: bold;
     }
 }
