@@ -3,7 +3,7 @@ import { checkAuthUserHelper } from "@/helper/auth.helper";
 import { handleRegister, handleVerificationStatus, type handleLoginData } from "@/services/user-auth.service";
 import { signupSchema } from "@/validation/signup.schema";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router";
 import { toast } from "react-toastify";
 // import Cookies from "js-cookie";
@@ -14,6 +14,7 @@ export default function UseSignUp() {
     const [isValidMob, setisValidMob] = useState(false);
     const [isValidEmail, setisValidEmail] = useState(false);
     const [isSendingOTP, setIsSendingOTP] = useState(false);
+    const sendingRef = useRef(false);
 
     // toggle password 
     const [isPasswordShow, setIsPasswordShow] = useState<boolean>(false);
@@ -86,7 +87,8 @@ export default function UseSignUp() {
 
     // handle Verify
     async function sendOTP(type: "mobile" | "email") {
-        if (isSendingOTP) return;
+        if (sendingRef.current) return;
+        sendingRef.current = true;
         setIsSendingOTP(true);
         try {
             if (slug?.slug) {
@@ -123,6 +125,7 @@ export default function UseSignUp() {
             const err = error as ErrResp;
             toast.error(err?.response?.data?.message)
         } finally {
+            sendingRef.current = false;
             setIsSendingOTP(false);
         }
     }
