@@ -28,22 +28,28 @@ export default function AccountSwitchModal({ isOpen, onOpenChange }: AccountSwit
                             <button type="button" onClick={onClose}><CloseMenuIcon /></button>
                         </ModalHeader> */}
                         <ModalBody>
-                            <div className="px-4 account-switch-base">
-                                <div className="svg-wrapper flex justify-center [&>svg]:w-[180px] [&>svg]:h-[180px]">
+                            <div className="px-4 flex flex-col items-center gap-3">
+                                <div className="flex justify-center [&>svg]:w-[160px] [&>svg]:h-[160px]">
                                     <SelectFieldImgIcon />
                                 </div>
-                                <div className="select-field-title !text-[18px]">Select Your <span> Preparation Type</span></div>
-                                <div className="select-field-type-base">
-                                    <div onClick={() => handleSwitchAccount("exam")} className="cursor-pointer flex-1">
-                                        <TypeBox text={"Government Exams Preparation"} image={
-                                            <img src="/gov-exam-icon.svg" alt="stud" className="w-[100px] h-[100px]" />
-                                        } isActive={accountMode === "exam" ? true : false} />
+                                <p className="text-[17px] font-bold text-center text-[#1a1a2e]">
+                                    Select Your <span className="text-[#9533FB]">Preparation Type</span>
+                                </p>
+                                <p className="text-[13px] text-[#7a7a95] text-center -mt-1">Switch your account mode anytime</p>
+                                <div className="flex flex-col gap-3 w-full mt-1">
+                                    <div onClick={() => handleSwitchAccount("exam")} className="cursor-pointer w-full">
+                                        <TypeBox
+                                            text={"Government Exams Preparation"}
+                                            image={<img src="/gov-exam-icon.svg" alt="government exam" />}
+                                            isActive={accountMode === "exam"}
+                                        />
                                     </div>
-                                    {/* <div onClick={() => examTypeActiveHandler("skills")}> */}
-                                    <div onClick={() => handleSwitchAccount("skills")} className="type-select-item-disabled1 cursor-pointer flex-1">
-                                        <TypeBox text={"Skills Preparation"} image={
-                                            <img src="/skills-icon.svg" alt="stud" className="w-[100px] h-[100px]" />
-                                        } isActive={accountMode === "skills" ? true : false} />
+                                    <div onClick={() => handleSwitchAccount("skills")} className="cursor-pointer w-full">
+                                        <TypeBox
+                                            text={"Skills Preparation"}
+                                            image={<img src="/skills-icon.svg" alt="skills" />}
+                                            isActive={accountMode === "skills"}
+                                        />
                                     </div>
                                 </div>
                             </div>
