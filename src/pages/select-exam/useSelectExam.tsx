@@ -1,8 +1,7 @@
 import type { ErrResp } from "@/config/axios-instance";
-import { useAccount } from "@/context/account/AccountContext";
 import { convertIntoSelectItems } from "@/helper/global.helper";
 import { getSubCategoryAPI } from "@/services/home.service";
-import { handleExamList, handleSubmitSaveUserCategory } from "@/services/user-auth.service";
+import { handleExamList, handleGetUserAccountMode, handleSubmitSaveUserCategory } from "@/services/user-auth.service";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router";
@@ -16,7 +15,6 @@ export default function UseSelectExam() {
     const [selectedByStatusKeys, setSelectedByStatusKeys] = useState("");
     const [selectedByDateRangeKeys, setSelectedByDateRangeKeys] = useState("");
     const [searchParams] = useSearchParams();
-    const { accountMode } = useAccount();
 
 
     const dataFilter: { id: string, label: string }[] = [
@@ -109,7 +107,9 @@ export default function UseSelectExam() {
                 } else if (referId && testId) {
                     window.location.href = `/competitions?referId=${referId}&testId=${testId}`;
                 } else {
-                    window.location.href = accountMode === "exam" ? "/home" : "/overview";
+                    const modeResp = await handleGetUserAccountMode();
+                    const mode = modeResp?.data?.data?.AccountMode;
+                    window.location.href = mode === "exam" ? "/home" : "/overview";
                 }
             }
         } catch (error) {
