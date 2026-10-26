@@ -1,7 +1,6 @@
 import AuthBgFrame from "@/ui/frame/AuthBgFrame";
 import "./sign-up.css";
 import SignUpImgIcon from "@/svg/SignUpImgIcon";
-// import MobileIcon from "@/svg/MobileIcon";
 import UseSignUp from "./hook/useSignUp";
 import { Link } from "react-router";
 import LockIcon from "@/svg/LockIcon";
@@ -26,41 +25,33 @@ export default function SignUp() {
                 <div className="sign-up-base">
                     <div className="sign-up-img-wrapper">
                         <SignUpImgIcon />
-                        <div className="sign-up-title mt-4">Sign <span>Up</span></div>
+                        <div className="sign-up-title mt-3">Sign <span>Up</span></div>
                     </div>
                     <div className="w-full">
-                        {/* form */}
                         <div className="sign-up-form-base">
-                            <div className="mobile-input-field">
-                                <div className="flex items-center gap-x-2 w-full">
-                                    <EmailIcon />
-                                    <input
-                                        type="email"
-                                        placeholder="Email"
-                                        name="email"
-                                        value={formik.values.email}
-                                        onChange={(e: { target: { value: string; }; }) => {
-                                            formik.setFieldValue("email", e.target.value);
-                                            // const value = e.target.value.replace(/\D/g, "");
-                                            // if (value.toString().length <= 10) {
-                                            //     formik.setFieldValue("mobileNo", value);
-                                            // }
-                                        }}
-                                        className="w-full"
-                                    />
+                            <div>
+                                <div className="mobile-input-field">
+                                    <div className="flex items-center gap-x-2 w-full">
+                                        <EmailIcon />
+                                        <input
+                                            type="email"
+                                            placeholder="Email address"
+                                            name="email"
+                                            value={formik.values.email}
+                                            onChange={(e: { target: { value: string; }; }) => {
+                                                formik.setFieldValue("email", e.target.value);
+                                            }}
+                                            className="w-full"
+                                        />
+                                    </div>
+                                    {isValidEmail && (
+                                        <div className="verify-btn">Verified</div>
+                                    )}
                                 </div>
-                                {
-                                    isValidEmail ?
-                                        <div
-                                            className="verify-btn"
-                                        >Verified</div>
-                                        : ""
-                                }
                             </div>
-                            {
-                                isValidEmail && <>
+                            {isValidEmail && (
+                                <>
                                     <div>
-
                                         <div className="password-input-field">
                                             <div className="flex items-center gap-x-2 w-full">
                                                 <LockIcon />
@@ -73,19 +64,14 @@ export default function SignUp() {
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
-                                                <button onClick={togglePassword}>
-                                                    {
-                                                        isPasswordShow ?
-                                                            <OpenEyeIcon />
-                                                            :
-                                                            <CloseEyeIcon />
-                                                    }
+                                                <button onClick={togglePassword} type="button">
+                                                    {isPasswordShow ? <OpenEyeIcon /> : <CloseEyeIcon />}
                                                 </button>
                                             </div>
                                         </div>
-                                        {
-                                            formik.touched.password && <p className="field-error-msg">{formik.errors.password}</p>
-                                        }
+                                        {formik.touched.password && (
+                                            <p className="field-error-msg">{formik.errors.password}</p>
+                                        )}
                                     </div>
                                     <div>
                                         <div className="password-input-field">
@@ -100,36 +86,35 @@ export default function SignUp() {
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
                                                 />
-                                                <button onClick={toggleConfirmPassword}>
-                                                    {
-                                                        isConfirmPasswordShow ?
-                                                            <OpenEyeIcon />
-                                                            :
-                                                            <CloseEyeIcon />
-                                                    }
+                                                <button onClick={toggleConfirmPassword} type="button">
+                                                    {isConfirmPasswordShow ? <OpenEyeIcon /> : <CloseEyeIcon />}
                                                 </button>
                                             </div>
                                         </div>
-                                        {
-                                            formik.touched.confirmPassword && <p className="field-error-msg">{formik.errors.confirmPassword}</p>
-                                        }
+                                        {formik.touched.confirmPassword && (
+                                            <p className="field-error-msg">{formik.errors.confirmPassword}</p>
+                                        )}
                                     </div>
                                 </>
-                            }
+                            )}
                         </div>
-                        {
-                            isValidEmail ?
-                                <button onClick={formik.submitForm} className="common-btn-ui">Submit</button>
-                                :
-                                <button disabled={formik.values.email === "" || isSendingOTP}
-                                    className={`common-btn-ui ${formik.values.email === "" || isSendingOTP ? "disabled" : ""}`}
-                                    onClick={() => sendOTP("email")}
-                                >{isSendingOTP ? "Sending..." : "Submit"}</button>
-                        }
-                        <div className="signup-btm-text">Already have an account? <Link to={"/login"}>Login</Link></div>
+                        {isValidEmail ? (
+                            <button onClick={formik.submitForm} className="common-btn-ui" type="button">
+                                Create Account
+                            </button>
+                        ) : (
+                            <button
+                                disabled={formik.values.email === "" || isSendingOTP}
+                                className={`common-btn-ui ${formik.values.email === "" || isSendingOTP ? "disabled" : ""}`}
+                                onClick={() => sendOTP("email")}
+                                type="button"
+                            >
+                                {isSendingOTP ? "Sending OTP…" : "Continue"}
+                            </button>
+                        )}
+                        <div className="signup-btm-text">Already have an account? <Link to={"/login"}>Log In</Link></div>
                     </div>
                 </div>
-
             </AuthBgFrame>
         </>
     )
