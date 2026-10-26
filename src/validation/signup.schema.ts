@@ -16,7 +16,7 @@ export const completeProSchema = object({
     city: string(),
     firstName: string().required("First name is required"),
     middleName: string(),
-    lastName: string(),
+    lastName: string().required("Last name is required"),
     pincode: string(),
     email: string()
 })

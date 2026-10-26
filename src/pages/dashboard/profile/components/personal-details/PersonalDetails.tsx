@@ -108,20 +108,20 @@ export default function PersonalDetails({ ProfileDetailsData, getProfileDetails 
                             placeholder="Select State"
                             name="state"
                             selectedKey={formik.values.state}
-                            // onSelectionChange={(key) => {
-                            //     formik.setFieldValue('state', key ?? '');
-                            //     formik.setFieldValue('city', '');
-                            // }}
+                            onSelectionChange={(key) => {
+                                formik.setFieldValue('state', key ?? '');
+                                formik.setFieldValue('city', '');
+                            }}
                             isInvalid={!!formik.errors.state && formik.touched.state}
                             errorMessage={formik.errors.state}
                             classNames={{
                                 base: "complete-profile-autocomplete-input-base personal-autocomplete-input-base"
                             }}
                             startContent={<StateIcon />}
-                            isDisabled={true}
+                            isDisabled={!isEdit}
                             isClearable={false}
                         >
-                            {states.filter((state) => state.id === "RJ").map((state) => (
+                            {states.map((state) => (
                                 <AutocompleteItem key={state.id}>{state.label}</AutocompleteItem>
                             ))}
                         </Autocomplete>
