@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_vVUnWwJlh3toxSqnCxvlctHxW8qn",
+  "orgId": "team_zIv76thtS5RW3vL67XzPsn92",
+  "projectName": "samaj-education-portal",
+  "settings": {
+    "createdAt": 1794064031029,
+    "framework": "vite",
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": "user-frontend",
+    "directoryListing": false,
+    "nodeVersion": "26.x"
+  }
+}
